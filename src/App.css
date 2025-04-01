@@ -1,0 +1,229 @@
+.bank-wizard {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .wizard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .wizard-header {
+    background: linear-gradient(135deg, #1e5799, #207cca);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .wizard-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  .wizard-header p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+  }
+  
+  .progress-steps {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .step {
+    text-align: center;
+    position: relative;
+    flex: 1;
+  }
+  
+  .step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 70%;
+    width: 60%;
+    height: 2px;
+    background: #dee2e6;
+    z-index: 1;
+  }
+  
+  .step.completed:not(:last-child):after {
+    background: #28a745;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background-color: #adb5bd;
+    color: white;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .step.active .step-number {
+    background-color: #007bff;
+  }
+  
+  .step.completed .step-number {
+    background-color: #28a745;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+  }
+  
+  .step.active .step-label {
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .step.completed .step-label {
+    color: #28a745;
+  }
+  
+  .wizard-content {
+    padding: 2rem;
+  }
+  
+  .form-step {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Form styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    transition: border-color 0.15s;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  
+  .radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .radio-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .radio-option:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .radio-option input {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+  
+  /* Button styles */
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  
+  .btn-prev, .btn-next {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .btn-prev {
+    background-color: #e9ecef;
+    color: #495057;
+  }
+  
+  .btn-prev:hover {
+    background-color: #dee2e6;
+  }
+  
+  .btn-next {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-next:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-row {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .progress-steps {
+      padding: 1rem;
+    }
+    
+    .step:not(:last-child):after {
+      left: 60%;
+      width: 80%;
+    }
+    
+    .step-label {
+      font-size: 0.7rem;
+    }
+  }
