@@ -1,4 +1,12 @@
-const Review = ({ formData, prevStep, handleSubmit, handleChange }) => {
+import React, { useState } from 'react';
+
+const Review = ({ formData, prevStep, handleSubmit }) => {
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setAcceptedTerms(!acceptedTerms);
+  };
+
   return (
     <div className="form-step">
       <h2>Review Your Application</h2>
@@ -9,7 +17,7 @@ const Review = ({ formData, prevStep, handleSubmit, handleChange }) => {
           <span>Name:</span>
           <span>{formData.firstName} {formData.lastName}</span>
         </div>
-        {/* Add more review fields */}
+        {/* Add more review fields as needed */}
       </div>
       
       <div className="form-group">
@@ -17,9 +25,7 @@ const Review = ({ formData, prevStep, handleSubmit, handleChange }) => {
           <input
             type="checkbox"
             name="acceptedTerms"
-            checked={formData}
-            onChange={handleChange}
-            required
+            onChange={handleCheckboxChange}
           />
           I confirm that all information provided is accurate and I agree to the terms and conditions.
         </label>
@@ -29,7 +35,12 @@ const Review = ({ formData, prevStep, handleSubmit, handleChange }) => {
         <button type="button" onClick={prevStep} className="btn-prev">
           Back
         </button>
-        <button type="submit" onClick={handleSubmit} className="btn-submit" disabled={!formData.acceptedTerms}>
+        <button 
+          type="submit" 
+          onClick={handleSubmit} 
+          className="btn-submit" 
+          disabled={!acceptedTerms} // Now this will enable/disable properly
+        >
           Submit Application
         </button>
       </div>

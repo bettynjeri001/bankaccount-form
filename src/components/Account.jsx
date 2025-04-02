@@ -25,37 +25,37 @@ const Account = () => {
     accountType: 'checking',
     jointAccount: false,
     jointApplicant: null,
-    
-    
-   
+
+    // Review and Terms
+    acceptedTerms: false, // Ensure this is explicitly set as false initially
   });
 
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+  const nextStep = () => setStep((prev) => prev + 1);
+  const prevStep = () => setStep((prev) => prev - 1);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === 'checkbox' ? checked : value
-    });
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value, // Ensure checkboxes are handled properly
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    nextStep(); // Move to confirmation
+    nextStep(); // Move to confirmation step
   };
 
   const renderStep = () => {
-    switch(step) {
+    switch (step) {
       case 1:
         return <PersonalDetails formData={formData} handleChange={handleChange} nextStep={nextStep} />;
       case 2:
         return <AccountType formData={formData} handleChange={handleChange} nextStep={nextStep} prevStep={prevStep} />;
       case 3:
-        
-        return <Review formData={formData} prevStep={prevStep} handleSubmit={handleSubmit} handleChange={handleChange}/>;
+        return <Review formData={formData} prevStep={prevStep} handleSubmit={handleSubmit} handleChange={handleChange} />;
       case 4:
         return <Confirmation formData={formData} />;
       default:
@@ -72,14 +72,14 @@ const Account = () => {
         </div>
         
         <div className="progress-steps">
-          {[1, 2, 3, 4,].map((stepNumber) => (
+          {[1, 2, 3, 4].map((stepNumber) => (
             <div 
               key={stepNumber} 
               className={`step ${step === stepNumber ? 'active' : ''} ${step > stepNumber ? 'completed' : ''}`}
             >
               <div className="step-number">{stepNumber}</div>
               <div className="step-label">
-                {['Personal Info', 'Account Type','Review', 'Confirmation'][stepNumber - 1]}
+                {['Personal Info', 'Account Type', 'Review', 'Confirmation'][stepNumber - 1]}
               </div>
             </div>
           ))}
